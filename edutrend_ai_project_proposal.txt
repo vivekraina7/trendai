@@ -1,0 +1,45 @@
+
+2
+
+Automatic Zoom
+EduTrend AI - Project Proposal
+Problem Statement
+In today’s rapidly evolving education landscape, students and educators struggle to keep up
+with emerging learning trends, in-demand skills, and future-ready career paths. Existing
+platforms mainly focus on course recommendations but lack real-time adaptability to global
+educational shifts and fail to personalize learning journeys based on both user needs and
+current industry trends. There is a critical need for an AI-powered system that continuously
+analyzes global learning data, identifies trends, and provides personalized educational
+guidance—bridging the gap between what learners study and what industries demand.
+Project Description
+EduTrend AI is an AI-powered educational trend and recommendation platform that
+integrates Retrieval-Augmented Generation (RAG), intelligent AI agents, and external APIs
+to deliver data-driven, personalized learning insights. The system continuously scans data
+from learning platforms, job portals, and academic resources to detect emerging
+educational trends, recommend personalized learning paths, and provide AI-based
+mentorship using a conversational interface. By leveraging RAG and multi-agent
+collaboration, EduTrend AI ensures users receive up-to-date, context-aware, and actionable
+learning insights.
+Tech Stack
+• Frontend: React.js / Next.js, Tailwind CSS, Chart.js / Recharts
+• Backend: Node.js + Express / FastAPI
+• Database: MongoDB (User Data), PostgreSQL (Trends Data)
+• AI Models: GPT-5 / Llama 3 / LangChain
+• RAG Pipeline: LangChain + ChromaDB / Pinecone
+• Agents Framework: LangChain Agents / google adk / CrewAI / AutoGen
+• Data Processing: Python, Pandas, BeautifulSoup, Scrapy
+• Visualization: Plotly / D3.js
+• Deployment: AWS / Render / Vercel
+• Authentication: Firebase Auth / OAuth2
+• Version Control: GitHub
+Applications
+• Students: Personalized skill and course recommendations, AI-based study planner.
+• Educators: Insights into trending skills to design relevant curriculums.
+• Institutions: Predictive analytics on education demand and skill gaps.
+• Career Counselors: Data-backed guidance on career paths and learning roadmaps.
+• EdTech Companies: Integration of EduTrend AI API to enhance learning platforms.
+Expected Outcome
+EduTrend AI will help learners stay ahead of global educational trends, assist educators and
+institutions in curriculum innovation, and enable truly personalized and adaptive lifelong
+learning experiences. It represents a fusion of AI, data science, and education for positive
+social impact.

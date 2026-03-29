@@ -1,0 +1,24 @@
+00:00:00 [Speaker 1]
+So this project is actually a ai.
+00:00:04 [Speaker 1]
+So, basically, first, we'll be having one portfolio kind of a page wherein I'll be providing you the information.
+00:00:12 [Speaker 1]
+But first, I need this a ai project.
+00:00:15 [Speaker 1]
+Later, we can add that, portfolio page.
+00:00:19 [Speaker 1]
+So, it's a project.
+
+00:00:21 [Speaker 1]
+What I need specifically is, AI mentor, wherein it answers some questions related to the text facts.
+00:00:33 [Speaker 1]
+Like, for example, if I ask what is Shradd, it should be able to answer it and it should be able to give the road map.
+00:00:40 [Speaker 1]
+So this Eduten AI is basically, like, AI skill analyzer wherein it, analyzes the current trending skills and helps the students or the tech guys find it and will be get getting the road map for it and the learning path.
+00:00:59 [Speaker 1]
+And the progress is tracked, like, if he chooses GenAI and wants to excel in that, he has to get the road map of it, and the progress should be tracked that this person is completed like that.
+00:01:16 [Speaker 1]
+And, if that portion is completed, we have to get it, like, it is completed, etcetera.
+
+00:01:22 [Speaker 1]
+And, if it's it should should show till where it is completed kind of thing, it has to be there.
