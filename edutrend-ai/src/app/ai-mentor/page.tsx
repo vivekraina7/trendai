@@ -10,13 +10,9 @@ import {
   TrendingUp,
   Lightbulb,
   RotateCcw,
-  Upload,
-  FileText,
-  Trash2,
   Loader2,
-  Paperclip,
 } from "lucide-react";
-import { apiChat, apiUploadDoc, apiListDocs, apiDeleteDoc } from "@/lib/api";
+import { apiChat } from "@/lib/api";
 
 interface Message {
   id: number;
@@ -52,51 +48,18 @@ export default function AIMentorPage() {
       id: 0,
       role: "assistant",
       content:
-        "Hello! I'm your **EduTrend AI Mentor**, powered by RAG and real-time educational data. I can help you with:\n\n- 📈 **Trending skills** and career insights\n- 📚 **Personalized learning plans**\n- 🎯 **Career path guidance**\n- 💡 **Skill gap analysis**\n\nYou can also **upload a PDF or TXT** (using the 📎 button) and I'll answer questions based on it!\n\nWhat would you like to explore today?",
+        "Hello! I'm your **EduTrend AI Mentor**, powered by real-time educational data. I can help you with:\n\n- 📈 **Trending skills** and career insights\n- 📚 **Personalized learning plans**\n- 🎯 **Career path guidance**\n- 💡 **Skill gap analysis**\n\nWhat would you like to explore today?",
       timestamp: initialTimestamp,
     },
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Doc upload state
-  const [docs, setDocs] = useState<{ doc_id: string; filename: string; uploaded_at: string }[]>([]);
-  const [uploading, setUploading] = useState(false);
-  const [uploadMsg, setUploadMsg] = useState("");
-  const [showDocs, setShowDocs] = useState(false);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  useEffect(() => {
-    apiListDocs().then(({ docs: d }) => setDocs(d)).catch(() => {});
-  }, []);
-
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setUploading(true);
-    setUploadMsg("");
-    try {
-      const res = await apiUploadDoc(file);
-      setUploadMsg(`✅ ${res.filename} added (${res.chunks} chunks)`);
-      const { docs: updated } = await apiListDocs();
-      setDocs(updated);
-    } catch (err: unknown) {
-      setUploadMsg(`❌ ${err instanceof Error ? err.message : "Upload failed"}`);
-    } finally {
-      setUploading(false);
-      if (fileInputRef.current) fileInputRef.current.value = "";
-    }
-  };
-
-  const handleDeleteDoc = async (docId: string) => {
-    await apiDeleteDoc(docId).catch(() => {});
-    setDocs((prev) => prev.filter((d) => d.doc_id !== docId));
-  };
 
   const [sessionId, setSessionId] = useState<string | undefined>(undefined);
 
@@ -260,75 +223,23 @@ export default function AIMentorPage() {
         </div>
       )}
 
-      {/* Docs Panel */}
-      {showDocs && (
-        <div className="mb-3 p-3 rounded-xl bg-surface border border-primary/10">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-medium text-muted uppercase tracking-wide flex items-center gap-1">
-              <FileText className="w-3 h-3" /> Knowledge Documents ({docs.length})
-            </span>
-          </div>
-          {uploadMsg && (
-            <div className={`text-xs mb-2 px-2 py-1 rounded-lg ${uploadMsg.startsWith("✅") ? "bg-success/10 text-success" : "bg-danger/10 text-danger"}`}>
-              {uploadMsg}
-            </div>
-          )}
-          {docs.length === 0 ? (
-            <p className="text-xs text-muted/60 italic">No documents uploaded yet. Upload a PDF or TXT to enhance AI answers.</p>
-          ) : (
-            <div className="space-y-1">
-              {docs.map((doc) => (
-                <div key={doc.doc_id} className="flex items-center justify-between text-xs bg-surface-light/30 rounded-lg px-2 py-1.5">
-                  <span className="text-muted truncate flex items-center gap-1">
-                    <FileText className="w-3 h-3 shrink-0" /> {doc.filename}
-                  </span>
-                  <button onClick={() => handleDeleteDoc(doc.doc_id)} className="text-muted/50 hover:text-danger transition-colors ml-2 shrink-0">
-                    <Trash2 className="w-3 h-3" />
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+
 
       {/* Input */}
       <div className="flex gap-2">
-        {/* Hidden file input */}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept=".pdf,.txt,.md"
-          onChange={handleFileUpload}
-          className="hidden"
-        />
-        {/* Upload button */}
-        <button
-          onClick={() => { setShowDocs(!showDocs); if (!showDocs) fileInputRef.current?.click(); }}
-          title="Upload PDF or TXT for RAG context"
-          disabled={uploading}
-          className="px-3 py-3 rounded-xl bg-surface border border-primary/10 text-muted hover:text-primary-light hover:border-primary/30 transition-all disabled:opacity-50 relative"
-        >
-          {uploading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Paperclip className="w-5 h-5" />}
-          {docs.length > 0 && (
-            <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-primary text-[9px] text-white flex items-center justify-center">
-              {docs.length}
-            </span>
-          )}
-        </button>
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-          placeholder="Ask about trends, skills, career paths, or your uploaded docs..."
+          placeholder="Ask about trends, skills, career paths..."
           className="flex-1 px-4 py-3 rounded-xl bg-surface border border-primary/10 text-foreground placeholder-muted focus:outline-none focus:border-primary/40 transition-colors"
           disabled={isTyping}
         />
         <button
           onClick={() => handleSend()}
           disabled={!input.trim() || isTyping}
-          className="px-4 py-3 rounded-xl gradient-primary text-white hover:opacity-90 transition-opacity disabled:opacity-40"
+          className="px-4 py-3 rounded-xl gradient-primary text-white hover:opacity-90 transition-opacity disabled:opacity-40 shadow-md shadow-cyan-500/20"
         >
           <Send className="w-5 h-5" />
         </button>

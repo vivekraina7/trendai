@@ -1,11 +1,19 @@
 import Link from "next/link";
 import { Brain, Linkedin } from "lucide-react";
 
+const platformLinks = [
+  { href: "/dashboard", label: "Dashboard" },
+  { href: "/trends", label: "Trend Explorer" },
+  { href: "/learning-path", label: "Learning Paths" },
+  { href: "/ai-mentor", label: "AI Mentor" },
+  { href: "/about", label: "About" },
+];
+
 export default function Footer() {
   return (
     <footer className="border-t border-primary/10 bg-surface/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
@@ -18,7 +26,16 @@ export default function Footer() {
             </Link>
             <p className="text-sm text-muted leading-relaxed">
               AI-powered educational trend analysis and personalized learning
-              recommendations.
+              recommendations. Built by{" "}
+              <a
+                href="https://www.linkedin.com/company/vyreka/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-light hover:underline"
+              >
+                Vyreka
+              </a>
+              .
             </p>
           </div>
 
@@ -28,70 +45,17 @@ export default function Footer() {
               Platform
             </h3>
             <ul className="space-y-2 text-sm text-muted">
-              <li>
-                <Link
-                  href="/dashboard"
-                  className="hover:text-primary-light transition-colors"
-                >
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/trends"
-                  className="hover:text-primary-light transition-colors"
-                >
-                  Trend Explorer
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/learning-path"
-                  className="hover:text-primary-light transition-colors"
-                >
-                  Learning Paths
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/ai-mentor"
-                  className="hover:text-primary-light transition-colors"
-                >
-                  AI Mentor
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="text-sm font-semibold text-foreground mb-4">
-              Resources
-            </h3>
-            <ul className="space-y-2 text-sm text-muted">
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-primary-light transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <span className="hover:text-primary-light transition-colors cursor-pointer">
-                  Documentation
-                </span>
-              </li>
-              <li>
-                <span className="hover:text-primary-light transition-colors cursor-pointer">
-                  API Reference
-                </span>
-              </li>
-              <li>
-                <span className="hover:text-primary-light transition-colors cursor-pointer">
-                  Blog
-                </span>
-              </li>
+              {platformLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="group inline-flex items-center gap-1.5 hover:text-primary-light transition-colors"
+                  >
+                    <span className="w-0 group-hover:w-2 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full transition-all duration-200 overflow-hidden" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -106,7 +70,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/company/vyreka/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-surface-light/50 flex items-center justify-center text-muted hover:text-primary-light hover:bg-surface-light transition-all"
+                className="w-9 h-9 rounded-lg gradient-primary flex items-center justify-center text-white hover:opacity-80 transition-opacity shadow-md shadow-cyan-500/20"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
@@ -116,7 +80,7 @@ export default function Footer() {
                 href="https://www.instagram.com/_vyreka_?igsh=cGwxNGx3djg4dW1w"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-surface-light/50 flex items-center justify-center text-muted hover:text-primary-light hover:bg-surface-light transition-all"
+                className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center text-white hover:opacity-80 transition-opacity shadow-md shadow-purple-500/20"
                 aria-label="Instagram"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -128,7 +92,7 @@ export default function Footer() {
                 href="https://chat.whatsapp.com/Lp8HCvoz8NyLS1ynXKLDDz"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-surface-light/50 flex items-center justify-center text-muted hover:text-primary-light hover:bg-surface-light transition-all"
+                className="w-9 h-9 rounded-lg bg-[#25D366] flex items-center justify-center text-white hover:opacity-80 transition-opacity shadow-md shadow-green-500/20"
                 aria-label="WhatsApp Community"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -137,18 +101,17 @@ export default function Footer() {
               </a>
             </div>
           </div>
-
         </div>
 
         <div className="border-t border-primary/10 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted">
-            &copy; {new Date().getFullYear()} EduTrend AI. All rights reserved.
+            &copy; {new Date().getFullYear()} EduTrend AI by Vyreka. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-muted">
-            <span className="hover:text-primary-light cursor-pointer">
+            <span className="hover:text-primary-light cursor-pointer transition-colors">
               Privacy Policy
             </span>
-            <span className="hover:text-primary-light cursor-pointer">
+            <span className="hover:text-primary-light cursor-pointer transition-colors">
               Terms of Service
             </span>
           </div>
