@@ -1,3 +1,5 @@
+"use client";
+
 import { Brain, Linkedin, Mail, Instagram } from "lucide-react";
 
 const team = [
