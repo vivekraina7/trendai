@@ -54,10 +54,10 @@ const features = [
 ];
 
 const stats = [
-  { value: "50K+", label: "Learning Trends Tracked", icon: TrendingUp },
-  { value: "10M+", label: "Data Points Analyzed", icon: BarChart3 },
-  { value: "25K+", label: "Active Learners", icon: Users },
-  { value: "500+", label: "Skill Categories", icon: BookOpen },
+  { value: "5K+", label: "Learning Trends Tracked", icon: TrendingUp },
+  { value: "10k+", label: "Data Points Analyzed", icon: BarChart3 },
+  { value: "2K+", label: "Active Learners", icon: Users },
+  { value: "50+", label: "Skill Categories", icon: BookOpen },
 ];
 
 const useCases = [
